@@ -4,7 +4,7 @@ library(tidyverse)
 library(showtext)
 library(camcorder)
 library(ggtext)
-library(nrBrand)
+# library(nrBrand)
 library(glue)
 library(ggforce)
 library(ggimage)
@@ -124,30 +124,30 @@ ggplot() +
     hjust = 1.2
   ) +
   # add logo
-  geom_image(
-    data = slice_head(plot_data, n = 1),
-    aes(
-      x = 0,
-      y = 0,
-      image = "2024/2024-04-23/images/earth.png"
-    ),
-    size = 0.3
-  ) +
+  # geom_image(
+  #   data = slice_head(plot_data, n = 1),
+  #   aes(
+  #     x = 0,
+  #     y = 0,
+  #     image = "2024/2024-04-23/images/earth.png"
+  #   ),
+  #   size = 0.3
+  # ) +
   # limits
   scale_y_continuous(
     limits = c(-ceiling(max(plot_data$y))+0.5, ceiling(max(plot_data$y)))
   ) +
   # annotate lines
   annotate(
-    "segment", x = log(10) + r, y = 0, yend = log(1000 + 500) + r,
+    "segment", x = log(10) + r, y = 0, xend = log(10) + r, yend = log(1000 + 500) + r,
     colour = alpha(text_col, 0.7), linetype = "dashed"
   ) +
   annotate(
-    "segment", x = log(100) + r, y = 0, yend = log(1000 + 500) + r,
+    "segment", x = log(100) + r, xend = log(100) + r, y = 0, yend = log(1000 + 500) + r,
     colour = alpha(text_col, 0.7), linetype = "dashed"
   ) +
   annotate(
-    "segment", x = log(1000) + r, y = 0, yend = log(1000 + 500) + r,
+    "segment", x = log(1000) + r, xend = log(1000) + r, y = 0, yend = log(1000 + 500) + r,
     colour = alpha(text_col, 0.7), linetype = "dashed"
   ) +
   # annotate labels
@@ -167,8 +167,8 @@ ggplot() +
     size.unit = "pt", size = 22, family = body_font
   ) +
   labs(title = title, 
-       subtitle = st,
-       caption = cap) +
+       subtitle = st) + #,
+      # caption = cap) +
   coord_fixed() +
   theme_void(base_size = 24) +
   theme(
